@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const AddPlant = () => {
@@ -70,7 +69,7 @@ const AddPlant = () => {
         minHeight: "100vh",
       }}
     >
-      <Toaster />
+     
       <div className="p-12 text-center space-y-4">
         <h1 className="text-3xl md:text-6xl text-green-700 font-semibold mb-6">
           Add New Plant

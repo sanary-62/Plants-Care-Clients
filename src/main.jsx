@@ -8,6 +8,8 @@ import {
 import MainLayout from './layouts/MainLayout';
 import Home from './components/Home';
 import AddPlant from './components/AddPlant';
+import PlantDetails from './components/PlantDetails';
+import UpdatePlant from './components/UpdatePlant';
 
 const router = createBrowserRouter([
   {
@@ -20,8 +22,17 @@ const router = createBrowserRouter([
         Component: Home
       },
       {
+       path: 'plant/:id',
+       Component: PlantDetails
+      },
+      {
         path: 'addPlant',
         Component: AddPlant
+      },
+      {
+        path: 'updatePlant/:id',
+        loader: ({params}) => fetch (`http://localhost:3000/plant/${params.id}`),
+        Component: UpdatePlant
       }
     ]
   },
