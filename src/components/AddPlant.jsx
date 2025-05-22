@@ -116,9 +116,9 @@ const AddPlant = () => {
               required
             >
               <option value="">Select Category</option>
-              <option value="succulent">Succulent</option>
-              <option value="fern">Fern</option>
-              <option value="flowering">Flowering</option>
+              <option value="herbs">Herbs</option>
+              <option value="fruits">Fruits</option>
+              <option value="vegetables">Vegetable</option>
             </select>
           </fieldset>
 
@@ -143,9 +143,9 @@ const AddPlant = () => {
               required
             >
               <option value="">Select Care Level</option>
-              <option value="easy">Easy</option>
-              <option value="moderate">Moderate</option>
-              <option value="difficult">Difficult</option>
+              <option value="low maintenance">Low Maintenance</option>
+              <option value="routine care">Routine Care</option>
+              <option value="high attention">High Attention</option>
             </select>
           </fieldset>
 
