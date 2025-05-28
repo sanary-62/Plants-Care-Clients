@@ -1,31 +1,21 @@
-// components/PrivateRoute.jsx
-import React, { useContext, useEffect } from "react";
+import React, { use } from "react";
+import { Navigate, useLocation } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const PrivateRoute = ({ children }) => {
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { user, loading } = use(AuthContext);
+  console.log(user);
+  const location = useLocation();
+  console.log(location);
 
-  useEffect(() => {
-    if (!user) {
-      Swal.fire({
-        icon: "warning",
-        title: "For see this page Please Login first",
-        timer: 2000,
-        showConfirmButton: false,
-      }).then(() => {
-        navigate("/login", { replace: true });
-      });
-    }
-  }, [user, navigate]);
-
-  if (!user) {
-    return null; // Or a loading spinner while redirecting
+  if (loading) {
+    return <div>Loading</div>;
   }
 
-  return children;
+  if (user && user?.email) {
+    return children;
+  }
+  return <Navigate state={location.pathname} to="/login"></Navigate>;
 };
 
 export default PrivateRoute;

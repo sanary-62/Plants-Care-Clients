@@ -20,8 +20,8 @@ const slides = [
 const Hero = () => {
   return (
     <div
-      className="w-full"
-      style={{ height: "80vh", border: "2px solid lime" }} // full width, no margin, no maxWidth
+      className="w-full mt-28"
+      style={{ height: "80vh", border: "2px solid lime" }}
     >
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
@@ -38,7 +38,9 @@ const Hero = () => {
       >
         {slides.map(({ src, title, desc }, i) => (
           <SwiperSlide key={i} style={{ height: "100%" }}>
-            <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <div
+              style={{ position: "relative", width: "100%", height: "100%" }}
+            >
               <img
                 src={src}
                 alt=""

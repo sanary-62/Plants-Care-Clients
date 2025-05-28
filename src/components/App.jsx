@@ -1,14 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import AddPlant from "./components/AddPlant";
-import MyPlants from "./components/MyPlants"; // Assuming you have this component
+import MyPlants from "./components/MyPlants";
 import PrivateRoute from "./components/PrivateRoute";
+import UpdatePlant from "./components/UpdatePlant";
 // other imports
 
 function App() {
   return (
     <Routes>
-      {/* other public routes */}
-      
       <Route
         path="/addPlant"
         element={
@@ -27,7 +26,14 @@ function App() {
         }
       />
 
-      {/* other routes */}
+      <Route
+        path="updatePlant/:id"
+        element={
+          <PrivateRoute>
+            <UpdatePlant />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }

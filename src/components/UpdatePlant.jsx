@@ -20,7 +20,7 @@ const UpdatePlant = () => {
   } = useLoaderData();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/plant/${id}`)
+    fetch(`http://localhost:3000/plants/${id}`)
       .then((res) => res.json())
       .then((data) => setFormData({ ...data, _id: data._id }))
       .catch((error) => console.error("Error fetching plant:", error));
@@ -37,7 +37,7 @@ const UpdatePlant = () => {
     try {
       const { _id, ...updateData } = formData;
 
-      const response = await fetch(`http://localhost:3000/plant/${id}`, {
+      const response = await fetch(`http://localhost:3000/plants/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

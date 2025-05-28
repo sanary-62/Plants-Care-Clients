@@ -1,7 +1,32 @@
-import React, { useState } from "react";
-import Swal from "sweetalert2";
+import React, { useState, useContext, useEffect } from "react";
 
+import Swal from "sweetalert2";
+import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 const AddPlant = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        navigate("/login");
+      });
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        userEmail: user.email || "",
+        userName: user.displayName || "",
+      }));
+    }
+  }, [user, navigate]);
+  if (!user) {
+    return null;
+  }
   const [formData, setFormData] = useState({
     image: "",
     plantName: "",
@@ -28,13 +53,11 @@ const AddPlant = () => {
   const handleAddPlant = async (e) => {
     e.preventDefault();
 
-    // Simulating DB call
     const data = new FormData();
     for (let key in formData) {
       data.append(key, formData[key]);
     }
 
-    //send plant data to the db
     fetch("http://localhost:3000/plants", {
       method: "POST",
       headers: {
@@ -44,18 +67,15 @@ const AddPlant = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.result?.insertedId)
- {
+        if (data.result?.insertedId) {
           Swal.fire({
             title: "Plant Added Successfully",
             icon: "success",
             draggable: true,
           });
           e.target.reset();
-
         }
       });
-
   };
 
   return (
@@ -69,7 +89,6 @@ const AddPlant = () => {
         minHeight: "100vh",
       }}
     >
-     
       <div className="p-12 text-center space-y-4">
         <h1 className="text-3xl md:text-6xl text-green-700 font-semibold mb-6">
           Add New Plant
@@ -200,9 +219,8 @@ const AddPlant = () => {
               type="email"
               name="userEmail"
               className="input w-full"
-              placeholder="user@example.com"
-              onChange={handleChange}
-              required
+              value={formData.userEmail}
+              readOnly
             />
           </fieldset>
 
@@ -212,9 +230,8 @@ const AddPlant = () => {
               type="text"
               name="userName"
               className="input w-full"
-              placeholder="John Doe"
-              onChange={handleChange}
-              required
+              value={formData.userName}
+              readOnly
             />
           </fieldset>
         </div>
