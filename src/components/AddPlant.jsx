@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+
 const AddPlant = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!user) {
       Swal.fire({
@@ -24,9 +25,11 @@ const AddPlant = () => {
       }));
     }
   }, [user, navigate]);
+
   if (!user) {
     return null;
   }
+
   const [formData, setFormData] = useState({
     image: "",
     plantName: "",
@@ -101,150 +104,154 @@ const AddPlant = () => {
         </p>
       </div>
 
-      <form onSubmit={handleAddPlant}>
-        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-6">
-          <label className="label">Image</label>
-          <input
-            type="file"
-            name="image"
-            className="input w-full"
-            onChange={handleChange}
-            required
-          />
-        </fieldset>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Plant Name</label>
+      <div className="max-w-5xl mx-auto">
+        <form onSubmit={handleAddPlant}>
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-6">
+            <label className="label">Image URL</label>
             <input
               type="text"
-              name="plantName"
+              name="image"
               className="input w-full"
-              placeholder="Aloe Vera"
+              placeholder="Enter image URL"
               onChange={handleChange}
               required
             />
           </fieldset>
 
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Category</label>
-            <select
-              name="category"
-              className="input w-full"
-              onChange={handleChange}
-              required
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Plant Name</label>
+              <input
+                type="text"
+                name="plantName"
+                className="input w-full"
+                placeholder="Aloe Vera"
+                onChange={handleChange}
+                required
+              />
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Category</label>
+              <select
+                name="category"
+                className="input w-full"
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Category</option>
+                <option value="herbs">Herbs</option>
+                <option value="fruits">Fruits</option>
+                <option value="vegetables">Vegetable</option>
+              </select>
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Description</label>
+              <input
+                type="text"
+                name="description"
+                className="input w-full"
+                placeholder="Short description"
+                onChange={handleChange}
+                required
+              />
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Care Level</label>
+              <select
+                name="careLevel"
+                className="input w-full"
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Care Level</option>
+                <option value="low maintenance">Low Maintenance</option>
+                <option value="routine care">Routine Care</option>
+                <option value="high attention">High Attention</option>
+              </select>
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Watering Frequency</label>
+              <input
+                type="text"
+                name="wateringFrequency"
+                className="input w-full"
+                placeholder="Every 3 days"
+                onChange={handleChange}
+                required
+              />
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Last Watered Date</label>
+              <input
+                type="date"
+                name="lastWateredDate"
+                className="input w-full"
+                onChange={handleChange}
+                required
+              />
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Next Watering Date</label>
+              <input
+                type="date"
+                name="nextWateringDate"
+                className="input w-full"
+                onChange={handleChange}
+                required
+              />
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">Health Status</label>
+              <input
+                type="text"
+                name="healthStatus"
+                className="input w-full"
+                placeholder="Healthy / Needs attention"
+                onChange={handleChange}
+                required
+              />
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">User Email</label>
+              <input
+                type="email"
+                name="userEmail"
+                className="input w-full"
+                value={formData.userEmail}
+                readOnly
+              />
+            </fieldset>
+
+            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+              <label className="label">User Name</label>
+              <input
+                type="text"
+                name="userName"
+                className="input w-full"
+                value={formData.userName}
+                readOnly
+              />
+            </fieldset>
+          </div>
+
+          <div className="mt-8 text-center max-w-xs mx-auto">
+            <button
+              type="submit"
+              className="btn btn-success bg-green-800 text-white px-8 rounded-2xl w-full"
             >
-              <option value="">Select Category</option>
-              <option value="herbs">Herbs</option>
-              <option value="fruits">Fruits</option>
-              <option value="vegetables">Vegetable</option>
-            </select>
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Description</label>
-            <input
-              type="text"
-              name="description"
-              className="input w-full"
-              placeholder="Short description"
-              onChange={handleChange}
-              required
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Care Level</label>
-            <select
-              name="careLevel"
-              className="input w-full"
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Care Level</option>
-              <option value="low maintenance">Low Maintenance</option>
-              <option value="routine care">Routine Care</option>
-              <option value="high attention">High Attention</option>
-            </select>
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Watering Frequency</label>
-            <input
-              type="text"
-              name="wateringFrequency"
-              className="input w-full"
-              placeholder="Every 3 days"
-              onChange={handleChange}
-              required
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Last Watered Date</label>
-            <input
-              type="date"
-              name="lastWateredDate"
-              className="input w-full"
-              onChange={handleChange}
-              required
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Next Watering Date</label>
-            <input
-              type="date"
-              name="nextWateringDate"
-              className="input w-full"
-              onChange={handleChange}
-              required
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">Health Status</label>
-            <input
-              type="text"
-              name="healthStatus"
-              className="input w-full"
-              placeholder="Healthy / Needs attention"
-              onChange={handleChange}
-              required
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">User Email</label>
-            <input
-              type="email"
-              name="userEmail"
-              className="input w-full"
-              value={formData.userEmail}
-              readOnly
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-            <label className="label">User Name</label>
-            <input
-              type="text"
-              name="userName"
-              className="input w-full"
-              value={formData.userName}
-              readOnly
-            />
-          </fieldset>
-        </div>
-
-        <div className="mt-8 text-center">
-          <button
-            type="submit"
-            className="btn btn-success bg-green-800 text-white px-8 rounded-2xl w-full"
-          >
-            Add Plant
-          </button>
-        </div>
-      </form>
+              Add Plant
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -29,18 +29,19 @@ const PlantCardPage = () => {
   }, [sortOption, plants]);
 
   return (
-    <div className="p-6 mt-28">
-      <h1 className="text-3xl font-bold text-center my-6 text-green-800">
+    <div className="p-4 sm:p-6 mt-28 max-w-7xl mx-auto">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-green-800">
         🌿 All Plant Cards 🌿
       </h1>
 
-      {/* Sorting UI */}
       <div className="text-center mb-6">
-        <label className="text-lg font-medium mr-2">Sort By:</label>
+        <label className="text-base sm:text-lg font-medium mr-2">
+          Sort By:
+        </label>
         <select
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
-          className="select select-bordered"
+          className="select select-bordered w-full max-w-xs"
         >
           <option value="">Default</option>
           <option value="nextWateringDate">Next Watering Date</option>
@@ -48,8 +49,7 @@ const PlantCardPage = () => {
         </select>
       </div>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {sortedPlants.map((plant) => (
           <PlantCard key={plant._id} plant={plant} />
         ))}

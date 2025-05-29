@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 const userIcon = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logOut } = React.useContext(AuthContext);
@@ -48,18 +49,14 @@ const Navbar = () => {
           <div className="login-btn flex gap-5 items-center">
             <div className="relative group">
               <img
+                data-tooltip-id="profile-tooltip"
+                data-tooltip-content={user?.displayName || "User Profile"}
                 className="rounded-full md:w-8 md:h-8 h-6 w-6 object-cover border border-green-600"
                 src={user?.photoURL || userIcon}
                 alt="User Avatar"
-                title=""
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = userIcon;
-                }}
               />
-              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                {user?.displayName}
-              </span>
+
+              <ReactTooltip id="profile-tooltip" place="bottom" />
             </div>
 
             {user ? (
@@ -133,11 +130,10 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <li className="text-sm px-2 py-1">{user.email}</li>
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="btn btn-error btn-sm w-full text-white"
+                    className="btn btn-error btn-sm w-full text-white bg-red-600"
                   >
                     Log Out
                   </button>

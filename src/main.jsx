@@ -2,10 +2,8 @@ import { Component, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
-
 import MainLayout from "./layouts/MainLayout";
 import AppWrapper from "./components/AppWrapper";
-
 import Home from "./components/Home";
 import AddPlant from "./components/AddPlant";
 import PlantDetails from "./components/PlantDetails";
@@ -17,7 +15,6 @@ import Users from "./components/Users";
 import MyPlants from "./components/MyPlants";
 import PrivateRoute from "./components/PrivateRoute";
 import ErrorPage from "./components/ErrorPage";
-
 import PlantCardPage from "./components/PlantCardPage";
 
 const router = createBrowserRouter([
@@ -38,6 +35,7 @@ const router = createBrowserRouter([
           },
           {
             path: "plantDetails/:id",
+            path: "plantDetails/:id",
             element: <PlantDetails />,
             loader: () =>
               new Promise((res) => setTimeout(() => res(null), 500)),
@@ -45,14 +43,13 @@ const router = createBrowserRouter([
           {
             path: "addPlant",
             loader: () =>
-              new Promise((res) => setTimeout(() => res(null), 500)), // 500ms delay
+              new Promise((res) => setTimeout(() => res(null), 500)),
             Component: () => (
               <PrivateRoute>
                 <AddPlant />
               </PrivateRoute>
             ),
           },
-
           {
             path: "my-plants",
             element: (
@@ -68,7 +65,6 @@ const router = createBrowserRouter([
             loader: () => fetch("http://localhost:3000/plants"),
             Component: PlantCardPage,
           },
-
           {
             path: "updatePlant/:id",
             loader: ({ params }) =>
@@ -93,6 +89,11 @@ const router = createBrowserRouter([
             path: "users",
             loader: () => fetch("http://localhost:3000/users"),
             Component: Users,
+          },
+
+          {
+            path: "*",
+            Component: ErrorPage,
           },
         ],
       },

@@ -3,7 +3,6 @@ import AddPlant from "./components/AddPlant";
 import MyPlants from "./components/MyPlants";
 import PrivateRoute from "./components/PrivateRoute";
 import UpdatePlant from "./components/UpdatePlant";
-// other imports
 
 function App() {
   return (

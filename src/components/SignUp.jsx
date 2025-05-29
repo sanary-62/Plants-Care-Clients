@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 const SignUp = () => {
@@ -40,23 +40,22 @@ const SignUp = () => {
       return;
     }
 
-    const { email: userEmail, password: userPassword, ...restFormData } = formData;
+    const {
+      email: userEmail,
+      password: userPassword,
+      ...restFormData
+    } = formData;
 
-    
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
 
-
-        const userProfile= {
-            email,
-            ...restFormData,
-            creationTime: result.user?.metadata?.creationTime,
-            
-lastSignInTime: result.user?.metadata?.
-lastSignInTime,
-            
-        }
+        const userProfile = {
+          email,
+          ...restFormData,
+          creationTime: result.user?.metadata?.creationTime,
+          lastSignInTime: result.user?.metadata?.lastSignInTime,
+        };
 
         return fetch("http://localhost:3000/users", {
           method: "POST",
@@ -103,7 +102,8 @@ lastSignInTime,
           <h1 className="text-5xl font-bold text-green-800">Sign Up Now!</h1>
           <p className="py-6 text-orange-700">
             Join to manage your plants, schedule watering, track growth, and{" "}
-            <br /> receive tailored gardening tips anytime, anywhere!
+            <br />
+            receive tailored gardening tips anytime, anywhere!
           </p>
         </div>
 
@@ -157,6 +157,13 @@ lastSignInTime,
                 Sign Up
               </button>
             </form>
+
+            <p className="text-sm mt-4 text-center">
+              Already have an account?{" "}
+              <Link to="/login" className="underline text-green-700">
+                Login
+              </Link>
+            </p>
           </div>
         </div>
       </div>

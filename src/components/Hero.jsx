@@ -20,8 +20,10 @@ const slides = [
 const Hero = () => {
   return (
     <div
-      className="w-full mt-28"
-      style={{ height: "80vh", border: "2px solid lime" }}
+      className="w-full  "
+      style={{
+        height: "60vh",
+      }}
     >
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
@@ -33,46 +35,26 @@ const Hero = () => {
         }}
         pagination={{ clickable: true }}
         navigation={true}
-        className="w-full"
-        style={{ height: "100%" }}
+        className="w-full h-full"
       >
         {slides.map(({ src, title, desc }, i) => (
-          <SwiperSlide key={i} style={{ height: "100%" }}>
-            <div
-              style={{ position: "relative", width: "100%", height: "100%" }}
-            >
+          <SwiperSlide key={i} className="h-full">
+            <div className="relative w-full h-full">
               <img
                 src={src}
                 alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                className="w-full h-full object-cover object-center md:object-top"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src =
                     "https://via.placeholder.com/800x600?text=Image+not+found";
                 }}
               />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  color: "white",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  padding: "20px",
-                  maxWidth: "600px",
-                }}
-              >
-                <h2
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "bold",
-                    marginBottom: "1rem",
-                  }}
-                >
+              <div className="absolute inset-0 text-white flex flex-col justify-center p-4 max-w-xl ">
+                <h2 className="text-lg sm:text-2xl md:text-4xl font-bold mb-4">
                   {title}
                 </h2>
-                <p style={{ fontSize: "1.2rem" }}>{desc}</p>
+                <p className="text-sm sm:text-base md:text-lg">{desc}</p>
               </div>
             </div>
           </SwiperSlide>

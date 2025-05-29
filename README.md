@@ -1,17 +1,29 @@
-<<<<<<< HEAD
-# React + Vite
+# 🌿 PlantCare - Your Green Companion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site:** [https://your-live-site-url.com](https://your-live-site-url.com)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Features
 
-## Expanding the ESLint configuration
+- 🌱 **Browse All Plants** – View a collection of different plants with their details.
+- ➕ **Add Your Own Plant** – Authenticated users can add their favorite plants.
+- 🪴 **My Plants Section** – Logged-in users can manage and view plants they added.
+- 🌗 **Light/Dark Theme Toggle** – Seamlessly switch between light and dark modes.
+- 🧑‍🌾 **User Authentication** – Secure login/logout with profile avatar and tooltips.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Assignemnt-10-Mango
-=======
->>>>>>> 58193dc536db8bc39359b39273964f1a2aad5cc8
-# Assignemnt-10-Mango
+---
+
+## 🛠️ Technologies Used
+
+- **React.js**
+- **React Router**
+- **Tailwind CSS + DaisyUI**
+- **Lottie React** (for animation)
+- **Date-fns** (for date formatting)
+- **React Tooltip** (for better UX)
+
+---
+
+## 📂 Folder Structure
+
